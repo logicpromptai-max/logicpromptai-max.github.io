@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO -->
+    <title>Foundation Tier | AI Sales Engine - LogicPrompt AI</title>
+    <meta name="description" content="AI-powered lead capture and qualification system. Multi-source intake, real-time routing, 24/7 revenue capture. Custom pricing based on your workflow complexity.">
+    <meta name="keywords" content="AI sales automation, lead qualification, sales engine, business automation, operational drift correction">
+    <link rel="canonical" href="https://logicpromptai-max.github.io/LogicPromptAI/foundation.html">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        .foundation-hero {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, transparent 100%);
+            padding: 8rem 1.5rem 4rem;
+            text-align: center;
+        }
+        
+        .pricing-card {
+            background: var(--dark-card);
+            border: 2px solid var(--gold-primary);
+            border-radius: 16px;
+            padding: 3rem;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            box-shadow: var(--shadow-gold);
+            text-align: center;
+        }
+        
+        .pricing-badge {
+            display: inline-block;
+            padding: 0.5rem 1.25rem;
+            background: rgba(212, 175, 55, 0.15);
+            border: 1px solid var(--border-gold);
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: var(--gold-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1.5rem;
+        }
+        
+        .pricing-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        
+        .pricing-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .features-list {
+            list-style: none;
+            margin: 2.5rem 0;
+            text-align: left;
+        }
+        
+        .features-list li {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-subtle);
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+            font-size: 1rem;
+        }
+        
+        .features-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .features-list li::before {
+            content: '✓';
+            color: var(--gold-primary);
+            font-weight: 700;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            line-height: 1;
+        }
+        
+        .tech-stack-section {
+            background: var(--dark-elevated);
+            padding: 3rem 2rem;
+            border-radius: 12px;
+            margin: 3rem 0;
+        }
+        
+        .tech-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+        
+        .tech-badge {
+            padding: 0.625rem 1.25rem;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--border-gold);
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--gold-accent);
+        }
+        
+        .lead-form-section {
+            max-width: 650px;
+            margin: 0 auto;
+            background: var(--dark-card);
+            border: 1px solid var(--border-gold);
+            border-radius: 16px;
+            padding: 2.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            font-size: 0.9375rem;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.875rem 1.25rem;
+            background: var(--dark-elevated);
+            border: 2px solid var(--border-subtle);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: var(--transition-base);
+            font-family: inherit;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1);
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .form-hint {
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+        
+        .deployment-timeline {
+            background: var(--dark-elevated);
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--gold-primary);
+            margin: 2rem 0;
+        }
+        
+        .timeline-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+        
+        .timeline-week {
+            font-weight: 700;
+            color: var(--gold-primary);
+            font-family: var(--font-mono);
+            min-width: 80px;
+        }
+    </style>
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GGPPEN65YV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GGPPEN65YV');
+</script>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" id="mainNav">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Logic<span class="logo-accent">Prompt</span></a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Diagnostic</a></li>
+                <li><a href="foundation.html" class="nav-link active">Foundation</a></li>
+                <li><a href="research-specs.html" class="nav-link">Proof</a></li>
+                <li><a href="audit.html" class="nav-link nav-cta">Book Discovery</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="foundation-hero">
+        <div class="container">
+            <div class="hero-badge">Foundation Tier</div>
+            <h1 class="hero-title">AI Sales Engine</h1>
+            <p class="hero-subtitle">
+                Multi-source lead capture, AI qualification, instant routing.<br>
+                Captures revenue 24/7 while you sleep.
+            </p>
+        </div>
+    </header>
+
+    <!-- Pricing Card (No Prices Shown) -->
+    <section class="section">
+        <div class="container">
+            <div class="pricing-card">
+                <div class="pricing-badge">Custom Pricing</div>
+                <h2 class="pricing-title">Investment Based on Complexity</h2>
+                <p class="pricing-subtitle">
+                    Pricing varies based on your workflow requirements, integration points, and monthly volume. We'll provide a custom quote after understanding your specific needs.
+                </p>
+                
+                <div style="padding:1.5rem; background:rgba(212,175,55,0.05); border-radius:8px; margin:2rem 0;">
+                    <p style="font-size:0.9375rem; color:var(--text-secondary); margin:0;">
+                        <strong style="color:var(--gold-primary);">Typical ROI:</strong> Most clients recover their investment within 3-4 months through time savings and captured revenue.
+                    </p>
+                </div>
+                
+                <a href="#lead-form" class="btn btn-primary btn-large">Request Custom Quote</a>
+                <p style="margin-top:1rem; font-size:0.875rem; color:var(--text-muted);">
+                    Or <a href="audit.html" style="color:var(--gold-primary);">book a discovery call</a> to discuss your workflow
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- What's Included -->
+    <section class="section" style="background:var(--dark-elevated);">
+        <div class="container">
+            <h2 class="section-title">What's Included in Foundation</h2>
+            <p class="section-subtitle">Complete AI sales engine deployment</p>
+            
+            <div style="max-width:700px; margin:0 auto;">
+                <ul class="features-list">
+                    <li>Multi-source lead capture (forms, email, WhatsApp, Facebook)</li>
+                    <li>AI-powered qualification & intent scoring</li>
+                    <li>2-minute response time, 24/7 operation</li>
+                    <li>CRM integration (HubSpot, Pipedrive, Sheets, or custom)</li>
+                    <li>Slack/email routing for high-value leads</li>
+                    <li>Automatic research & data enrichment on incoming leads</li>
+                    <li>Edge case testing & validation before deployment</li>
+                    <li>Complete team training & documentation</li>
+                    <li>Ongoing monitoring, maintenance & prompt tuning</li>
+                    <li>Monthly performance reports & drift audits</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">How Foundation Works</h2>
+            <p class="section-subtitle">Real-time revenue capture system</p>
+            
+            <div class="solution-grid" style="margin-top:3rem;">
+                <div class="solution-card">
+                    <div class="solution-step">Step 1</div>
+                    <h3>Lead Arrives</h3>
+                    <p>From website form, email, WhatsApp, Facebook Messenger—all connected to one intake point.</p>
+                </div>
+                
+                <div class="solution-card">
+                    <div class="solution-step">Step 2</div>
+                    <h3>AI Researches</h3>
+                    <p>Automatically enriches with company data, analyzes message intent, scores against your criteria.</p>
+                </div>
+                
+                <div class="solution-card">
+                    <div class="solution-step">Step 3</div>
+                    <h3>Instant Classification</h3>
+                    <p>High-value, low-priority, or spam. AI decides based on your business logic, not generic rules.</p>
+                </div>
+                
+                <div class="solution-card">
+                    <div class="solution-step">Step 4</div>
+                    <h3>Smart Routing</h3>
+                    <p>High-intent leads ping Slack within 2 minutes. Others log to CRM with priority tags.</p>
+                </div>
+                
+                <div class="solution-card">
+                    <div class="solution-step">Step 5</div>
+                    <h3>Personalized Response</h3>
+                    <p>AI drafts contextual reply based on lead's business and message. You review or auto-send.</p>
+                </div>
+                
+                <div class="solution-card">
+                    <div class="solution-step">Step 6</div>
+                    <h3>Complete Logging</h3>
+                    <p>Every interaction, decision, and data point logged to CRM. Full audit trail maintained.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deployment Timeline -->
+    <section class="section" style="background:var(--dark-elevated);">
+        <div class="container">
+            <h2 class="section-title">Deployment Timeline</h2>
+            <p class="section-subtitle">From contract to live system in 3-4 weeks</p>
+            
+            <div class="deployment-timeline" style="max-width:700px; margin:2rem auto;">
+                <div class="timeline-item">
+                    <div class="timeline-week">Week 1</div>
+                    <div>
+                        <strong style="color:var(--text-primary);">Discovery & Design</strong>
+                        <p style="margin:0.5rem 0 0 0; color:var(--text-secondary);">Map current workflows, define qualification criteria, design system architecture.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-week">Week 2</div>
+                    <div>
+                        <strong style="color:var(--text-primary);">Build & Test</strong>
+                        <p style="margin:0.5rem 0 0 0; color:var(--text-secondary);">Construct workflows, integrate tools, test with 50-100 simulated scenarios.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-week">Week 3</div>
+                    <div>
+                        <strong style="color:var(--text-primary);">Validation</strong>
+                        <p style="margin:0.5rem 0 0 0; color:var(--text-secondary);">Run against your historical data, tune AI prompts, verify classification accuracy.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-week">Week 4</div>
+                    <div>
+                        <strong style="color:var(--text-primary);">Deploy & Train</strong>
+                        <p style="margin:0.5rem 0 0 0; color:var(--text-secondary);">Go live, train your team, monitor closely for first 2 weeks.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack -->
+    <section class="section">
+        <div class="container">
+            <div class="tech-stack-section">
+                <h3 style="text-align:center; margin-bottom:1rem; color:var(--gold-accent);">Technology Stack</h3>
+                <p style="text-align:center; color:var(--text-muted); margin-bottom:2rem;">
+                    Enterprise-grade tools, configured for your business logic
+                </p>
+                
+                <div class="tech-badges">
+                    <div class="tech-badge">OpenAI GPT-4</div>
+                    <div class="tech-badge">Claude AI</div>
+                    <div class="tech-badge">Make.com</div>
+                    <div class="tech-badge">n8n</div>
+                    <div class="tech-badge">HubSpot API</div>
+                    <div class="tech-badge">Pipedrive API</div>
+                    <div class="tech-badge">Slack API</div>
+                    <div class="tech-badge">Google APIs</div>
+                    <div class="tech-badge">Webhooks</div>
+                    <div class="tech-badge">Custom Logic</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Validated Impact -->
+    <section class="section" style="background:var(--dark-elevated);">
+        <div class="container">
+            <h2 class="section-title">Validated Impact</h2>
+            <p class="section-subtitle">Tested with real workflows, not simulations</p>
+            
+            <div class="proof-grid">
+                <div class="proof-stat">
+                    <div class="proof-value">15+</div>
+                    <div class="proof-label">Hours/Week Saved</div>
+                    <div class="proof-detail">On manual lead review</div>
+                </div>
+                
+                <div class="proof-stat">
+                    <div class="proof-value">2 min</div>
+                    <div class="proof-label">Response Time</div>
+                    <div class="proof-detail">vs 4-6 hours manual</div>
+                </div>
+                
+                <div class="proof-stat">
+                    <div class="proof-value">95%</div>
+                    <div class="proof-label">Accuracy</div>
+                    <div class="proof-detail">In lead classification</div>
+                </div>
+                
+                <div class="proof-stat">
+                    <div class="proof-value">24/7</div>
+                    <div class="proof-label">Operation</div>
+                    <div class="proof-detail">No downtime tolerance</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lead Form -->
+    <section class="section" id="lead-form">
+        <div class="container">
+            <h2 class="section-title">Request Foundation Quote</h2>
+            <p class="section-subtitle">
+                Tell us about your workflow. We'll provide a custom quote within 24 hours.
+            </p>
+            
+            <div class="lead-form-section">
+                <form id="leadForm">
+                    <div class="form-group">
+                        <label for="leadName">Your Name *</label>
+                        <input type="text" id="leadName" required placeholder="John Smith">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="leadEmail">Email Address *</label>
+                        <input type="email" id="leadEmail" required placeholder="john@company.com">
+                        <div class="form-hint">We'll never share your email with third parties</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="leadCompany">Company Name *</label>
+                        <input type="text" id="leadCompany" required placeholder="Acme Inc">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="leadChallenge">Workflow Challenge *</label>
+                        <textarea id="leadChallenge" required placeholder="Describe the manual process you want to automate. Include:
+• Where leads come from (website, email, Facebook, etc.)
+• Current manual steps (review, qualify, respond)
+• Approximate weekly volume
+• Tools you currently use (CRM, communication platforms)"></textarea>
+                        <div class="form-hint">The more specific, the more accurate our quote will be</div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-large" style="width:100%;">
+                        Request Custom Quote
+                    </button>
+                    
+                    <p style="text-align:center; margin-top:1rem; font-size:0.875rem; color:var(--text-muted);">
+                        We'll respond within 24 hours with pricing and a technical design proposal
+                    </p>
+                </form>
+            </div>
+            
+            <div style="text-align:center; margin-top:2rem;">
+                <p style="color:var(--text-secondary); margin-bottom:1rem;">Prefer to discuss live?</p>
+                <a href="audit.html" class="btn btn-secondary">Book 15-Min Discovery Call</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <div class="logo">Logic<span class="logo-accent">Prompt</span></div>
+                <p>Operational drift correction through AI workflow automation.</p>
+            </div>
+            
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h4>Solutions</h4>
+                    <ul>
+                        <li><a href="foundation.html">Foundation Tier</a></li>
+                        <li><a href="research-specs.html">Field Demonstrations</a></li>
+                        <li><a href="audit.html">Book Discovery</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="research-specs.html">Technical Proof</a></li>
+                        <li><a href="index.html#tei-calculator">ROI Calculator</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="mailto:logicprompt.ai@gmail.com">logicprompt.ai@gmail.com</a></li>
+                        <li><a href="audit.html">Schedule Discovery Call</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="container">
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

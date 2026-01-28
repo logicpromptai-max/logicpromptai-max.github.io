@@ -1,0 +1,40 @@
+# robots.txt for LogicPrompt AI
+# This file tells search engines which pages to crawl and which to ignore
+
+# Allow all search engines to crawl everything
+User-agent: *
+Allow: /
+
+# Disallow crawling of utility files and folders (if you add them later)
+Disallow: /css/
+Disallow: /js/
+Disallow: /assets/screenshots/
+
+# Sitemap location (helps Google find all your pages)
+Sitemap: https://logicpromptai-max.github.io/LogicPromptAI/sitemap.xml
+
+# Crawl delay (optional - be nice to servers)
+# Crawl-delay: 10
+
+# Specific instructions for major search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Block AI scrapers that don't respect standard rules (optional)
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Note: To allow AI training on your content, remove the Disallow lines above
+# To block all AI crawlers, keep them as Disallow: /

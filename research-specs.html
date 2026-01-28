@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO -->
+    <title>Field Demonstrations | Technical Proof - LogicPrompt AI</title>
+    <meta name="description" content="Production-validated AI workflow systems. Watch real demonstrations of lead qualification, content automation, and operations systems in action.">
+    <meta name="keywords" content="AI automation demo, workflow automation proof, technical validation, system demonstrations">
+    <link rel="canonical" href="https://logicpromptai-max.github.io/LogicPromptAI/research-specs.html">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        .demo-video-card {
+            background: var(--dark-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 0;
+            overflow: hidden;
+            transition: var(--transition-base);
+        }
+        
+        .demo-video-card:hover {
+            border-color: var(--gold-primary);
+            box-shadow: var(--shadow-lg), var(--shadow-gold);
+            transform: translateY(-4px);
+        }
+        
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            background: #000;
+        }
+        
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .demo-content {
+            padding: 2rem;
+        }
+        
+        .demo-badge {
+            display: inline-block;
+            padding: 0.375rem 0.875rem;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--border-gold);
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--gold-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+        
+        .demo-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-subtle);
+        }
+        
+        .demo-stat {
+            text-align: center;
+        }
+        
+        .demo-stat-value {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--gold-primary);
+            font-family: var(--font-mono);
+        }
+        
+        .demo-stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+        
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .tech-item {
+            padding: 0.375rem 0.875rem;
+            background: var(--dark-elevated);
+            border: 1px solid var(--border-subtle);
+            border-radius: 6px;
+            font-size: 0.8125rem;
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+        }
+        
+        .architecture-section {
+            background: var(--dark-elevated);
+            padding: 3rem 1.5rem;
+            border-radius: 12px;
+            margin: 3rem 0;
+        }
+        
+        .principle-card {
+            background: var(--dark-card);
+            border-left: 3px solid var(--gold-primary);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+        }
+        
+        .principle-card h4 {
+            color: var(--gold-accent);
+            margin-bottom: 0.75rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" id="mainNav">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Logic<span class="logo-accent">Prompt</span></a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Diagnostic</a></li>
+                <li><a href="foundation.html" class="nav-link">Foundation</a></li>
+                <li><a href="research-specs.html" class="nav-link active">Proof</a></li>
+                <li><a href="audit.html" class="nav-link nav-cta">Book Discovery</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="hero" style="padding:8rem 1.5rem 4rem;">
+        <div class="container">
+            <div class="hero-badge">Field Demonstrations</div>
+            <h1 class="hero-title">Production-Validated Systems</h1>
+            <p class="hero-subtitle">
+                Not mockups. Not theory. These are functioning AI workflow systems<br>
+                tested under real-world conditions with edge case handling.
+            </p>
+        </div>
+    </header>
+
+    <!-- System Demonstrations -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">System Walkthroughs</h2>
+            <p class="section-subtitle">Watch how operational drift correction works in practice</p>
+            
+            <div class="drift-grid" style="margin-top:3rem;">
+                <!-- SaaS Demo -->
+                <div class="demo-video-card">
+                    <div class="video-wrapper">
+                        <iframe 
+                            src="https://www.youtube.com/embed/nPURnt5qpco" 
+                            title="SaaS Lead Qualification System"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="demo-content">
+                        <div class="demo-badge">SaaS • Lead Qualification</div>
+                        <h3>AI Sales Engine for SaaS</h3>
+                        <p>Multi-source lead capture with AI-powered qualification, intent scoring, and instant routing. Handles 100+ leads/day with 2-minute response time.</p>
+                        
+                        <div class="demo-stats">
+                            <div class="demo-stat">
+                                <div class="demo-stat-value">15+</div>
+                                <div class="demo-stat-label">Hours Saved/Week</div>
+                            </div>
+                            <div class="demo-stat">
+                                <div class="demo-stat-value">95%</div>
+                                <div class="demo-stat-label">Classification Accuracy</div>
+                            </div>
+                            <div class="demo-stat">
+                                <div class="demo-stat-value">2 min</div>
+                                <div class="demo-stat-label">Response Time</div>
+                            </div>
+                        </div>
+                        
+                        <div class="tech-list">
+                            <span class="tech-item">Make.com</span>
+                            <span class="tech-item">OpenAI GPT-4</span>
+                            <span class="tech-item">Slack API</span>
+                            <span class="tech-item">HubSpot</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Agency Demo -->
+                <div class="demo-video-card">
+                    <div class="video-wrapper">
+                        <iframe 
+                            src="https://www.youtube.com/embed/5pfyEx2SWU0" 
+                            title="Agency Content Automation System"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="demo-content">
+                        <div class="demo-badge">Agency • Content Automation</div>
+                        <h3>Content Repurposing Engine</h3>
+                        <p>Automated transcription, AI extraction of key insights, and platform-specific content generation. Turns 60-minute webinars into 20+ social posts.</p>
+                        
+                        <div class="demo-stats">
+                            <div class="demo-stat">
+                                <div class="demo-stat-value">8+</div>
+                                <div class="demo-stat-label">Hours Saved/Piece</div>
+                            </div>
+                            <div class="demo-stat">
+                                <div class="demo-stat-value">3×</div>
+                                <div class="demo-stat-label">Content Output</div>
+                            </div>
+                            <div class="demo-stat">
+                                <div class="demo-stat-value">5</div>
+                                <div class="demo-stat-label">Platforms Covered</div>
+                            </div>
+                        </div>
+                        
+                        <div class="tech-list">
+                            <span class="tech-item">AssemblyAI</span>
+                            <span class="tech-item">GPT-4</span>
+                            <span class="tech-item">n8n</span>
+                            <span class="tech-item">Buffer</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- E-commerce Demo -->
+                <div class="demo-video-card">
+                    <div class="video-wrapper">
+                        <iframe 
+                            src="https://www.youtube.com/embed/fj7RFXBar8Q" 
+                            title="E-commerce Operations System"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="demo-content">
+                        <div class="demo-badge">E-commerce • Operations</div>
+                        <h3>Unified Operations Hub</h3>
+                        <p>Order tracking, customer support triage, inventory alerts, and automated follow-ups. Single control center for all operational workflows.</p>
+                        
+                        <div class="demo-stats">
+                            <div class="demo-stat">
+                                <div class="demo-stat-value">20+</div>
+                                <div class="demo-stat-label">Hours Saved/Week</div>
+                            </div>
+                            <div class="demo-stat">
+                                <div class="demo-stat-value">0</div>
+                                <div class="demo-stat-label">Missed Requests</div>
+                            </div>
+                            <div class="demo-stat">
+                                <div class="demo-stat-value">40%</div>
+                                <div class="demo-stat-label">Faster Resolution</div>
+                            </div>
+                        </div>
+                        
+                        <div class="tech-list">
+                            <span class="tech-item">Shopify API</span>
+                            <span class="tech-item">Claude AI</span>
+                            <span class="tech-item">Gmail</span>
+                            <span class="tech-item">Slack</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture Principles -->
+    <section class="section" style="background:var(--dark-elevated);">
+        <div class="container">
+            <h2 class="section-title">Core Architecture Principles</h2>
+            <p class="section-subtitle">How we prevent operational drift by design</p>
+            
+            <div class="architecture-section" style="background:var(--dark-card);">
+                <div class="principle-card">
+                    <h4>🔍 Decision Logic Separation</h4>
+                    <p>Business logic is defined separately from workflow execution. Changes to "what qualifies a lead" don't require rebuilding the entire system.</p>
+                </div>
+                
+                <div class="principle-card">
+                    <h4>✅ Edge Case Testing</h4>
+                    <p>Every system is tested with malformed inputs, API failures, rate limits, and duplicate data before deployment. No silent failures.</p>
+                </div>
+                
+                <div class="principle-card">
+                    <h4>📊 Continuous Monitoring</h4>
+                    <p>Real-time alerts on decision accuracy, response times, and error rates. Monthly drift audits catch logic degradation early.</p>
+                </div>
+                
+                <div class="principle-card">
+                    <h4>🔄 Idempotent Operations</h4>
+                    <p>All actions are safe to retry. Network failures don't create duplicate tasks or missed assignments.</p>
+                </div>
+                
+                <div class="principle-card">
+                    <h4>🎯 Context-Aware AI</h4>
+                    <p>AI decisions include full context: lead source, message history, company data. Not just pattern matching on keywords.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Validation -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Validation Methodology</h2>
+            <p class="section-subtitle">How we prove systems work before deployment</p>
+            
+            <div class="solution-grid">
+                <div class="solution-card">
+                    <div class="solution-step">Phase 1</div>
+                    <h3>Simulated Load Testing</h3>
+                    <p>50-100+ test scenarios including edge cases, malformed data, and API timeouts. System must handle all gracefully.</p>
+                </div>
+                
+                <div class="solution-card">
+                    <div class="solution-step">Phase 2</div>
+                    <h3>Real Data Validation</h3>
+                    <p>Run system against client's historical data. Measure classification accuracy, response time, and false positive rate.</p>
+                </div>
+                
+                <div class="solution-card">
+                    <div class="solution-step">Phase 3</div>
+                    <h3>Parallel Operation</h3>
+                    <p>System runs alongside manual process for 1-2 weeks. Compare decisions to validate logic before full deployment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section section-cta">
+        <div class="container cta-container">
+            <h2 class="cta-title">Ready for your own validated system?</h2>
+            <p class="cta-subtitle">We'll map your workflow and design a drift-resistant architecture in 15 minutes.</p>
+            <a href="audit.html" class="btn btn-primary btn-large">Book Discovery Call</a>
+            <p class="cta-fallback">Or email: <a href="mailto:logicprompt.ai@gmail.com">logicprompt.ai@gmail.com</a></p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <div class="logo">Logic<span class="logo-accent">Prompt</span></div>
+                <p>Operational drift correction through AI workflow automation.</p>
+            </div>
+            
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h4>Solutions</h4>
+                    <ul>
+                        <li><a href="foundation.html">Foundation Tier</a></li>
+                        <li><a href="research-specs.html">Field Demonstrations</a></li>
+                        <li><a href="audit.html">Book Discovery</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="research-specs.html">Technical Proof</a></li>
+                        <li><a href="index.html#tei-calculator">ROI Calculator</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="mailto:logicprompt.ai@gmail.com">logicprompt.ai@gmail.com</a></li>
+                        <li><a href="audit.html">Schedule Discovery Call</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2026 LogicPrompt AI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

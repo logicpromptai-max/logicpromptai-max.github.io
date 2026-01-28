@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    
+    <!-- Homepage -->
+    <url>
+        <loc>https://logicpromptai-max.github.io/LogicPromptAI/</loc>
+        <lastmod>2026-01-27</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    
+    <!-- Foundation Page -->
+    <url>
+        <loc>https://logicpromptai-max.github.io/LogicPromptAI/foundation.html</loc>
+        <lastmod>2026-01-27</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    
+    <!-- Research & Specs Page -->
+    <url>
+        <loc>https://logicpromptai-max.github.io/LogicPromptAI/research-specs.html</loc>
+        <lastmod>2026-01-27</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <!-- Audit/Booking Page -->
+    <url>
+        <loc>https://logicpromptai-max.github.io/LogicPromptAI/audit.html</loc>
+        <lastmod>2026-01-27</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    
+</urlset>
+
+<!-- 
+USAGE INSTRUCTIONS:
+1. Update <lastmod> dates whenever you update pages (format: YYYY-MM-DD)
+2. Submit this sitemap to Google Search Console (https://search.google.com/search-console)
+3. Submit to Bing Webmaster Tools (https://www.bing.com/webmasters)
+
+PRIORITY GUIDE:
+1.0 = Most important (Homepage)
+0.9 = Very important (Main service pages)
+0.8 = Important (Proof/credibility pages)
+0.5 = Normal (Blog posts, if you add them later)
+0.3 = Low (Utility pages)
+
+CHANGEFREQ GUIDE:
+- daily: Homepage, blog
+- weekly: Main service pages
+- monthly: Static content pages
+- yearly: Legal pages (privacy policy, terms)
+-->
