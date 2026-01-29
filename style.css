@@ -960,3 +960,10 @@ h1, h2, h3 {
     color: var(--text-secondary); /* Make sure this isn't black! */
     line-height: 1.6;
 }
+
+/* Safety: If Javascript reveal fails, ensure cards are visible */
+.solution-card, .drift-card, .proof-stat {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+}
