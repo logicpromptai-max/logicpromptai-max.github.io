@@ -456,6 +456,45 @@ h1, h2, h3 {
     margin-bottom: 1.5rem;
 }
 
+.solution-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+    margin-top: 4rem;
+}
+
+.solution-card {
+    background: var(--dark-card);
+    padding: 3rem;
+    border-radius: 24px;
+    border: 1px solid var(--border-subtle);
+    transition: var(--transition-base);
+    position: relative;
+    overflow: hidden;
+}
+
+.solution-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.05) 0%, transparent 100%);
+    opacity: 0;
+    transition: var(--transition-base);
+}
+
+.solution-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--border-gold-bright);
+    box-shadow: var(--shadow-gold-strong);
+}
+
+.solution-card:hover::before {
+    opacity: 1;
+}
+
 .drift-impact {
     margin-top: 1.5rem;
     padding-top: 1.5rem;
