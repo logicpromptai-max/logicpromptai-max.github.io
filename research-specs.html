@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GGPPEN65YV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-GGPPEN65YV', {
+        'send_page_view': true,
+        'linker': { 'domains': ['logicpromptai-max.github.io'] }
+      });
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -8,7 +20,7 @@
     <title>Field Demonstrations | Technical Proof - LogicPrompt AI</title>
     <meta name="description" content="Production-validated AI workflow systems. Watch real demonstrations of lead qualification, content automation, and operations systems in action.">
     <meta name="keywords" content="AI automation demo, workflow automation proof, technical validation, system demonstrations">
-    <link rel="canonical" href="https://logicpromptai-max.github.io/LogicPromptAI/research-specs.html">
+    <link rel="canonical" href="https://logicpromptai-max.github.io/research-specs.html">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -170,7 +182,7 @@
                 <div class="demo-video-card">
                     <div class="video-wrapper">
                         <iframe 
-                            src="https://www.youtube.com/embed/nPURnt5qpco" 
+                            src="https://www.youtube.com/embed/nPURnt5qpco?enablejsapi=1" 
                             title="SaaS Lead Qualification System"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                             allowfullscreen>
@@ -209,7 +221,7 @@
                 <div class="demo-video-card">
                     <div class="video-wrapper">
                         <iframe 
-                            src="https://www.youtube.com/embed/5pfyEx2SWU0" 
+                            src="https://www.youtube.com/embed/5pfyEx2SWU0?enablejsapi=1" 
                             title="Agency Content Automation System"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                             allowfullscreen>
@@ -248,7 +260,7 @@
                 <div class="demo-video-card">
                     <div class="video-wrapper">
                         <iframe 
-                            src="https://www.youtube.com/embed/fj7RFXBar8Q" 
+                            src="https://www.youtube.com/embed/fj7RFXBar8Q?enablejsapi=1" 
                             title="E-commerce Operations System"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                             allowfullscreen>
@@ -403,5 +415,21 @@
     </footer>
 
     <script src="script.js"></script>
+    
+    <script>
+  // Track which Architecture Principles users find most interesting
+  document.querySelectorAll('.principle-card').forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      const principleName = card.querySelector('h4').innerText;
+      if (typeof gtag === 'function') {
+        gtag('event', 'view_principle', {
+          'event_category': 'proof_page',
+          'event_label': principleName
+        });
+      }
+    }, { once: true }); // Only fires once per session per card
+  });
+</script>
+
 </body>
 </html>

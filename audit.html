@@ -1,6 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GGPPEN65YV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-GGPPEN65YV', {
+        'send_page_view': true,
+        'linker': { 'domains': ['logicpromptai-max.github.io'] }
+      });
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -8,7 +21,7 @@
     <title>Book Discovery Call | 15-Min Operational Drift Audit - LogicPrompt AI</title>
     <meta name="description" content="Schedule a 15-minute operational drift audit. No sales pitch. We'll map your workflow, identify bottlenecks, and show you exactly what automation can fix.">
     <meta name="keywords" content="discovery call, operational audit, workflow consultation, AI automation consultation">
-    <link rel="canonical" href="https://logicpromptai-max.github.io/LogicPromptAI/audit.html">
+    <link rel="canonical" href="https://logicpromptai-max.github.io/audit.html">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -151,15 +164,7 @@
         }
     </style>
 </head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GGPPEN65YV"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-GGPPEN65YV');
-</script>
 <body>
     <!-- Navigation -->
     <nav class="nav" id="mainNav">
@@ -377,4 +382,32 @@
         
         <div class="footer-bottom">
             <div class="container">
-                <p>&copy; 2026 LogicPrompt AI. Discovery calls are exploratory
+                <p>&copy; 2026 LogicPrompt AI. Discovery calls are exploratory and diagnostic in nature.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Track interaction with the calendar wrapper
+        const calendarWrapper = document.querySelector('.calendar-iframe-wrapper');
+        
+        if (calendarWrapper) {
+          // 'mousedown' is more reliable for iframes than 'click'
+          calendarWrapper.addEventListener('mousedown', () => {
+            if (typeof gtag === 'function') {
+              gtag('event', 'calendar_interaction', {
+                'event_category': 'conversion_intent',
+                'event_label': 'Google Calendar Interaction',
+                'page_location': window.location.href
+              });
+              console.log("GA4: Calendar Interaction Captured");
+            }
+          });
+        }
+      });
+    </script>
+</body>
+</html>

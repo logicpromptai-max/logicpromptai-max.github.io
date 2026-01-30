@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GGPPEN65YV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-GGPPEN65YV', {
+        'send_page_view': true,
+        'linker': { 'domains': ['logicpromptai-max.github.io'] }
+      });
+      
+      // 🎯 TRACKING THE WIN: 
+      // This tells GA4 that a "Booked_Call" conversion just happened.
+      gtag('event', 'conversion', {
+          'send_to': 'G-GGPPEN65YV',
+          'event_category': 'booking',
+          'event_label': 'Discovery Call'
+      });
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmed | LogicPrompt AI</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        .thanks-container {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        .success-icon {
+            font-size: 4rem;
+            color: var(--gold-primary);
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Logic<span class="logo-accent">Prompt</span></a>
+        </div>
+    </nav>
+
+    <main class="thanks-container">
+        <div class="success-icon">✓</div>
+        <h1 class="hero-title">Audit Scheduled</h1>
+        <p class="hero-subtitle">
+            Check your inbox. You should have a calendar invite with the Google Meet link.<br>
+            I'm looking forward to mapping your workflow.
+        </p>
+        <div style="margin-top: 2rem;">
+            <a href="index.html" class="btn btn-secondary">Return Home</a>
+            <a href="https://www.linkedin.com/in/klyde-alan-miguel" target="_blank" class="btn btn-primary" style="margin-left:1rem;">Connect on LinkedIn</a>
+        </div>
+    </main>
+</body>
+</html>

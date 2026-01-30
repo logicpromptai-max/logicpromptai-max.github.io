@@ -2,6 +2,7 @@
  * LogicPrompt AI - Unified Site Logic
  * CORRECTED VERSION - Production Ready
  */
+let roiTrackingTimer; // Start here: This must be at the very top.
 
 document.addEventListener('DOMContentLoaded', () => {
     // 1. MOBILE NAVIGATION TOGGLE
@@ -47,25 +48,37 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function calculateROI() {
-        // Get input values with correct IDs
         const weeklyHours = parseFloat(document.getElementById('weeklyHours')?.value) || 0;
         const hourlyRate = parseFloat(document.getElementById('hourlyRate')?.value) || 0;
         const errorRate = (parseFloat(document.getElementById('errorRate')?.value) || 0) / 100;
 
-        // Calculations
-        const annualLaborCost = weeklyHours * hourlyRate * 52; // 52 weeks per year
-        const driftCost = annualLaborCost * errorRate; // Cost of errors/drift
-        const potentialRecovery = driftCost * 0.70; // Assuming 70% recovery with LogicPrompt
+        const annualLaborCost = weeklyHours * hourlyRate * 52;
+        const driftCost = annualLaborCost * errorRate;
+        const potentialRecovery = driftCost * 0.70;
 
-        // Update UI elements
         updateElement('annualCost', formatCurrency(annualLaborCost));
         updateElement('potentialSavings', formatCurrency(potentialRecovery));
         
-        // Calculate Net ROI
-        const systemCost = 12000; // Estimated annual cost of Foundation tier
+        const systemCost = 12000; 
         const netROI = ((potentialRecovery - systemCost) / systemCost) * 100;
         updateElement('netROI', Math.round(netROI) + '%+');
-    }
+
+        // 4. Google Analytics Event Tracking
+        clearTimeout(roiTrackingTimer);
+        if (annualLaborCost > 0) {
+            roiTrackingTimer = setTimeout(() => {
+                if (typeof gtag === 'function') {
+                    gtag('event', 'generate_roi_report', {
+                        'event_category': 'engagement',
+                        'event_label': 'TEI Calculator',
+                        'value': Math.round(driftCost), 
+                        'currency': 'USD'
+                    });
+                    console.log("GA4: ROI Event Sent", driftCost);
+                }
+            }, 2000); 
+        }
+    } 
 
     // Helper: Format as Currency
     function formatCurrency(num) {
