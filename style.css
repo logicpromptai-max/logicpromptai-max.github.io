@@ -2,6 +2,9 @@
    LogicPrompt AI - Premium Luxury Theme
    High-Ticket Client Design with Gold Accents
    ========================================================================== */
+html {
+    scroll-behavior: smooth;
+}
 
 :root {
     /* Premium Gold Palette */
