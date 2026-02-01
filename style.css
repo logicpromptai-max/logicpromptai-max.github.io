@@ -444,6 +444,12 @@ h1, h2, h3 {
     filter: drop-shadow(0 0 10px var(--gold-glow));
 }
 
+.drift-icon {
+    opacity: 0.85;
+    filter: none;
+}
+
+
 .drift-card h3,
 .solution-card h3 {
     font-size: 1.8rem;
@@ -458,6 +464,29 @@ h1, h2, h3 {
     line-height: 1.7;
     margin-bottom: 1.5rem;
 }
+
+.drift-card p {
+    margin-bottom: 1.2rem;
+}
+
+
+/* --- Drift Cards: Grounded, Heavy, Non-Interactive --- */
+.drift-card {
+    transform: none !important;
+    box-shadow: none !important;
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.015),
+        rgba(255, 255, 255, 0.005)
+    );
+}
+
+.drift-card:hover {
+    transform: none !important;
+    box-shadow: none !important;
+    border-color: var(--border-subtle);
+}
+
 
 .solution-grid {
     display: grid;
@@ -499,11 +528,16 @@ h1, h2, h3 {
 }
 
 .drift-impact {
-    margin-top: 1.5rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--border-subtle);
-    font-weight: 600;
+    margin-top: 1.75rem;
+    padding-top: 1rem;
+    border-top: 1px dashed rgba(255, 215, 0, 0.25);
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--gold-primary);
 }
+
 
 .solution-step {
     display: inline-block;
@@ -991,4 +1025,10 @@ h1, h2, h3 {
 /* 3. Set the default card behavior */
 .solution-card {
     cursor: default;
+}
+
+<section class="section section-problem">
+.section-problem {
+    border-top: 1px solid rgba(255, 215, 0, 0.15);
+    border-bottom: 1px solid rgba(255, 215, 0, 0.15);
 }
