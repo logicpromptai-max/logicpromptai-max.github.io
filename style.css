@@ -1026,8 +1026,6 @@ h1, h2, h3 {
 .solution-card {
     cursor: default;
 }
-
-<section class="section section-problem">
 .section-problem {
     border-top: 1px solid rgba(255, 215, 0, 0.15);
     border-bottom: 1px solid rgba(255, 215, 0, 0.15);
