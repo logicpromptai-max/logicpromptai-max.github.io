@@ -435,7 +435,7 @@
             </p>
             
             <div class="lead-form-section">
-                <form id="leadForm">
+                
                     <div class="form-group">
                         <label for="leadName">Your Name *</label>
                         <input type="text" id="leadName" required placeholder="John Smith">
@@ -447,30 +447,175 @@
                         <div class="form-hint">We'll never share your email with third parties</div>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="leadCompany">Company Name *</label>
-                        <input type="text" id="leadCompany" required placeholder="Acme Inc">
+<!-- Lead Capture Form — Connected to Formspree -->
+<section class="section" id="lead-form">
+    <div class="container">
+        <h2 class="section-title">Request Foundation Quote</h2>
+        <p class="section-subtitle">
+            Tell us about your workflow. We'll provide
+            a custom quote within 24 hours.
+        </p>
+
+        <div class="lead-form-section">
+            <form
+                id="foundationForm"
+                action="https://formspree.io/f/mvzdljkq"
+                method="POST">
+
+                <!-- Hidden fields for tracking -->
+                <input type="hidden"
+                    name="source"
+                    value="Foundation Page">
+                <input type="hidden"
+                    name="page"
+                    value="foundation.html">
+
+                <div class="form-group">
+                    <label for="leadName">
+                        Your Name *
+                    </label>
+                    <input
+                        type="text"
+                        id="leadName"
+                        name="name"
+                        required
+                        placeholder="John Smith">
+                </div>
+
+                <div class="form-group">
+                    <label for="leadEmail">
+                        Email Address *
+                    </label>
+                    <input
+                        type="email"
+                        id="leadEmail"
+                        name="email"
+                        required
+                        placeholder="john@company.com">
+                    <div class="form-hint">
+                        We'll never share your email
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="leadChallenge">Workflow Challenge *</label>
-                        <textarea id="leadChallenge" required placeholder="Describe the manual process you want to automate. Include:
-• Where leads come from (website, email, Facebook, etc.)
-• Current manual steps (review, qualify, respond)
-• Approximate weekly volume
-• Tools you currently use (CRM, communication platforms)"></textarea>
-                        <div class="form-hint">The more specific, the more accurate our quote will be</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="leadCompany">
+                        Company Name *
+                    </label>
+                    <input
+                        type="text"
+                        id="leadCompany"
+                        name="business"
+                        required
+                        placeholder="Acme Inc">
+                </div>
+
+                <div class="form-group">
+                    <label for="leadNiche">
+                        Your Industry
+                    </label>
+                    <select id="leadNiche" name="niche"
+                        style="width:100%;
+                        padding:0.875rem 1.25rem;
+                        background:var(--dark-elevated);
+                        border:2px solid var(--border-subtle);
+                        border-radius:8px;
+                        color:var(--text-primary);
+                        font-size:1rem;
+                        font-family:inherit;">
+                        <option value="">
+                            Select Your Industry
+                        </option>
+                        <option value="accounting">
+                            Accounting Firm
+                        </option>
+                        <option value="law">
+                            Law Firm
+                        </option>
+                        <option value="dental">
+                            Dental Practice
+                        </option>
+                        <option value="allied">
+                            Allied Health / Physio
+                        </option>
+                        <option value="psychology">
+                            Psychology / Counselling
+                        </option>
+                        <option value="aesthetics">
+                            Cosmetic / Aesthetics Clinic
+                        </option>
+                        <option value="logistics">
+                            Logistics
+                        </option>
+                        <option value="realestate">
+                            Real Estate
+                        </option>
+                        <option value="ecommerce">
+                            E-commerce
+                        </option>
+                        <option value="other">
+                            Other
+                        </option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="leadChallenge">
+                        Workflow Challenge *
+                    </label>
+                    <textarea
+                        id="leadChallenge"
+                        name="challenge"
+                        required
+                        placeholder="Describe what you want to automate:
+- Where leads come from
+- Current manual steps
+- Weekly volume
+- Tools you use"></textarea>
+                    <div class="form-hint">
+                        More detail = more accurate quote
                     </div>
-                    
-                    <button type="submit" class="btn btn-primary btn-large" style="width:100%;">
-                        Request Custom Quote
-                    </button>
-                    
-                    <p style="text-align:center; margin-top:1rem; font-size:0.875rem; color:var(--text-muted);">
-                        We'll respond within 24 hours with pricing and a technical design proposal
-                    </p>
-                </form>
-            </div>
+                </div>
+
+                <!-- Honeypot spam filter -->
+                <input type="text"
+                    name="_gotcha"
+                    style="display:none">
+
+                <!-- Redirect after submit -->
+                <input type="hidden"
+                    name="_next"
+                    value="https://logicpromptai-max.github.io/thanks.html">
+
+                <button
+                    type="submit"
+                    class="btn btn-primary btn-large"
+                    style="width:100%;">
+                    Request Custom Quote →
+                </button>
+
+                <p style="text-align:center;
+                    margin-top:1rem;
+                    font-size:0.875rem;
+                    color:var(--text-muted);">
+                    We respond within 24 hours
+                    with pricing and a proposal
+                </p>
+            </form>
+        </div>
+
+        <div style="text-align:center;
+            margin-top:2rem;">
+            <p style="color:var(--text-secondary);
+                margin-bottom:1rem;">
+                Prefer to discuss live?
+            </p>
+            <a href="audit.html"
+                class="btn btn-secondary">
+                Book 15-Min Discovery Call
+            </a>
+        </div>
+    </div>
+</section>
             
             <div style="text-align:center; margin-top:2rem;">
                 <p style="color:var(--text-secondary); margin-bottom:1rem;">Prefer to discuss live?</p>

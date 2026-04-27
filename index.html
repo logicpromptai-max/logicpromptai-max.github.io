@@ -354,112 +354,204 @@
         </div>
     </section>
 
-<!-- LogicPrompt AI Lead Capture Form -->
-<form id="leadForm">
-  <input
-    type="text"
-    id="name"
-    placeholder="Your Name"
-    required>
-  <input
-    type="email"
-    id="email"
-    placeholder="Work Email"
-    required>
-  <input
-    type="text"
-    id="business"
-    placeholder="Business Name"
-    required>
-  <select id="niche">
-    <option value="">Select Your Industry</option>
-    <option value="accounting">
-      Accounting Firm</option>
-    <option value="law">Law Firm</option>
-    <option value="dental">Dental Practice</option>
-    <option value="allied">Allied Health</option>
-    <option value="psychology">Psychology</option>
-    <option value="aesthetics">
-      Cosmetic Clinic</option>
-  </select>
-  <select id="pain">
-    <option value="">Biggest Bottleneck?</option>
-    <option value="appointments">
-      Appointment Reminders</option>
-    <option value="documents">
-      Document Collection</option>
-    <option value="followups">
-      Client Follow-ups</option>
-    <option value="intake">
-      Patient/Client Intake</option>
-    <option value="billing">
-      Billing & Invoicing</option>
-  </select>
-  <input
-    type="text"
-    id="country"
-    placeholder="Country (AU/NZ/SG/UK)">
-  <button type="submit">
-    Get My Free AI Audit →
-  </button>
-  <p id="formStatus"></p>
-</form>
+<!-- Lead Capture Section -->
+<section class="section"
+    style="background:var(--dark-elevated);">
+    <div class="container">
+        <h2 class="section-title">
+            Get Your Free AI Audit
+        </h2>
+        <p class="section-subtitle">
+            Tell us your biggest bottleneck.
+            We'll show you exactly what to automate.
+        </p>
 
-<script>
-document.getElementById('leadForm')
-  .addEventListener('submit', async function(e) {
-    e.preventDefault();
+        <div style="max-width:600px;
+            margin:0 auto;
+            background:var(--dark-card);
+            border:1px solid var(--border-gold);
+            border-radius:16px;
+            padding:2.5rem;">
 
-    const status = document.getElementById(
-      'formStatus');
-    status.textContent = 'Sending...';
+            <form
+                id="indexLeadForm"
+                action="https://formspree.io/f/mvzdljkq"
+                method="POST">
 
-    const data = {
-      name:     document.getElementById(
-                  'name').value,
-      email:    document.getElementById(
-                  'email').value,
-      business: document.getElementById(
-                  'business').value,
-      niche:    document.getElementById(
-                  'niche').value,
-      pain:     document.getElementById(
-                  'pain').value,
-      country:  document.getElementById(
-                  'country').value,
-      source:   'Website Form',
-      date:     new Date().toISOString()
-                  .split('T')[0],
-    };
+                <input type="hidden"
+                    name="source"
+                    value="Homepage">
+                <input type="hidden"
+                    name="_next"
+                    value="https://logicpromptai-max.github.io/thanks.html">
+                <input type="text"
+                    name="_gotcha"
+                    style="display:none">
 
-    try {
-      // Sends to Formspree (free, no card)
-      const response = await fetch(
-        'https://formspree.io/f/mvzdljkq',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data),
-        }
-      );
+                <div style="margin-bottom:1.25rem;">
+                    <input
+                        type="text"
+                        name="name"
+                        placeholder="Your Name *"
+                        required
+                        style="width:100%;
+                        padding:0.875rem 1.25rem;
+                        background:var(--dark-elevated);
+                        border:2px solid var(--border-subtle);
+                        border-radius:8px;
+                        color:var(--text-primary);
+                        font-size:1rem;
+                        font-family:inherit;
+                        margin-bottom:1rem;
+                        display:block;">
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="Work Email *"
+                        required
+                        style="width:100%;
+                        padding:0.875rem 1.25rem;
+                        background:var(--dark-elevated);
+                        border:2px solid var(--border-subtle);
+                        border-radius:8px;
+                        color:var(--text-primary);
+                        font-size:1rem;
+                        font-family:inherit;
+                        margin-bottom:1rem;
+                        display:block;">
+                    <input
+                        type="text"
+                        name="business"
+                        placeholder="Business Name *"
+                        required
+                        style="width:100%;
+                        padding:0.875rem 1.25rem;
+                        background:var(--dark-elevated);
+                        border:2px solid var(--border-subtle);
+                        border-radius:8px;
+                        color:var(--text-primary);
+                        font-size:1rem;
+                        font-family:inherit;
+                        margin-bottom:1rem;
+                        display:block;">
+                    <select
+                        name="niche"
+                        style="width:100%;
+                        padding:0.875rem 1.25rem;
+                        background:var(--dark-elevated);
+                        border:2px solid var(--border-subtle);
+                        border-radius:8px;
+                        color:var(--text-primary);
+                        font-size:1rem;
+                        font-family:inherit;
+                        margin-bottom:1rem;
+                        display:block;">
+                        <option value="">
+                            Select Your Industry
+                        </option>
+                        <option value="accounting">
+                            Accounting Firm
+                        </option>
+                        <option value="law">
+                            Law Firm
+                        </option>
+                        <option value="dental">
+                            Dental Practice
+                        </option>
+                        <option value="allied">
+                            Allied Health
+                        </option>
+                        <option value="psychology">
+                            Psychology
+                        </option>
+                        <option value="aesthetics">
+                            Cosmetic Clinic
+                        </option>
+                        <option value="logistics">
+                            Logistics
+                        </option>
+                        <option value="realestate">
+                            Real Estate
+                        </option>
+                        <option value="ecommerce">
+                            E-commerce
+                        </option>
+                        <option value="other">
+                            Other
+                        </option>
+                    </select>
+                    <select
+                        name="pain"
+                        style="width:100%;
+                        padding:0.875rem 1.25rem;
+                        background:var(--dark-elevated);
+                        border:2px solid var(--border-subtle);
+                        border-radius:8px;
+                        color:var(--text-primary);
+                        font-size:1rem;
+                        font-family:inherit;
+                        margin-bottom:1rem;
+                        display:block;">
+                        <option value="">
+                            Biggest Bottleneck?
+                        </option>
+                        <option value="slow_response">
+                            Slow Lead Response
+                        </option>
+                        <option value="appointments">
+                            Appointment Reminders
+                        </option>
+                        <option value="documents">
+                            Document Collection
+                        </option>
+                        <option value="followups">
+                            Client Follow-ups
+                        </option>
+                        <option value="intake">
+                            Client Intake Process
+                        </option>
+                        <option value="billing">
+                            Billing & Invoicing
+                        </option>
+                        <option value="other">
+                            Other Manual Tasks
+                        </option>
+                    </select>
+                    <input
+                        type="text"
+                        name="country"
+                        placeholder="Country (AU / NZ / SG / UK)"
+                        style="width:100%;
+                        padding:0.875rem 1.25rem;
+                        background:var(--dark-elevated);
+                        border:2px solid var(--border-subtle);
+                        border-radius:8px;
+                        color:var(--text-primary);
+                        font-size:1rem;
+                        font-family:inherit;
+                        margin-bottom:1.5rem;
+                        display:block;">
+                </div>
 
-      if (response.ok) {
-        status.textContent =
-          '✅ Thank you! We will be in touch within 24 hours.';
-        document.getElementById(
-          'leadForm').reset();
-      } else {
-        status.textContent =
-          'Something went wrong. Please email us directly.';
-      }
-    } catch (error) {
-      status.textContent =
-        'Error. Please try again.';
-    }
-});
-</script>
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                    style="width:100%;
+                    font-size:1.1rem;">
+                    Get My Free AI Audit →
+                </button>
+
+                <p style="text-align:center;
+                    margin-top:1rem;
+                    font-size:0.8rem;
+                    color:var(--text-muted);">
+                    No sales pitch.
+                    Response within 24 hours.
+                </p>
+            </form>
+        </div>
+    </div>
+</section>
 
     <!-- Final CTA -->
     <section class="section section-cta">
