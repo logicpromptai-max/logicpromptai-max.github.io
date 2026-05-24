@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Automation Architecture | LogicPrompt AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #FFD700;
+  --gold2: #B8860B;
+  --black: #000;
+  --card: #0D0D0D;
+  --elevated: #141414;
+  --border: rgba(255,215,0,0.2);
+  --border-bright: rgba(255,215,0,0.55);
+  --text: #fff;
+  --text2: #aaa;
+  --text3: #555;
+  --mono: 'DM Mono', monospace;
+  --display: 'Syne', sans-serif;
+  --node-w: 148px;
+  --node-h: 56px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#000;color:#fff;font-family:var(--display);overflow-x:hidden;}
+
+/* ── Tab switcher ── */
+.tab-bar{display:flex;gap:0;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:4px;max-width:640px;margin:0 auto 2.5rem;}
+.tab{flex:1;padding:10px 8px;background:transparent;border:none;color:var(--text2);font-family:var(--display);font-size:12px;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;cursor:pointer;border-radius:8px;transition:all .2s;}
+.tab:hover{color:var(--text);}
+.tab.active{background:rgba(255,215,0,0.12);color:var(--gold);border:1px solid var(--border);}
+
+/* ── Workflow canvas ── */
+.workflow-wrap{background:var(--card);border:1px solid var(--border);border-radius:20px;overflow:hidden;position:relative;}
+.wf-header{padding:20px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.wf-eyebrow{font-size:10px;font-family:var(--mono);color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:4px;}
+.wf-title{font-size:17px;font-weight:700;color:var(--text);}
+.metric-strip{display:flex;gap:20px;flex-wrap:wrap;}
+.met{text-align:right;}
+.met-n{font-family:var(--mono);font-size:18px;font-weight:500;color:var(--gold);}
+.met-l{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.05em;}
+
+/* ── SVG canvas ── */
+.wf-canvas{padding:32px 24px;overflow-x:auto;}
+.wf-canvas svg{display:block;margin:0 auto;}
+
+/* ── Node styles (inline in SVG) ── */
+
+/* ── Side panel ── */
+.wf-detail{background:var(--elevated);border-top:1px solid var(--border);padding:20px 24px;display:none;}
+.wf-detail.show{display:block;}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:12px;}
+.detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;}
+.dc-label{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;font-family:var(--mono);margin-bottom:6px;}
+.dc-value{font-size:14px;color:var(--text);font-weight:600;}
+.dc-value.gold{color:var(--gold);}
+.dc-sub{font-size:11px;color:var(--text2);margin-top:3px;line-height:1.5;}
+
+/* ── Legend ── */
+.legend{display:flex;gap:20px;padding:14px 24px;border-top:1px solid var(--border);flex-wrap:wrap;}
+.leg-item{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--text2);}
+.leg-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0;}
+
+/* ── Run animation button ── */
+.run-btn{background:rgba(255,215,0,0.1);border:1px solid var(--border-bright);color:var(--gold);font-family:var(--mono);font-size:11px;letter-spacing:0.08em;padding:7px 18px;border-radius:6px;cursor:pointer;transition:all .2s;text-transform:uppercase;}
+.run-btn:hover{background:rgba(255,215,0,0.2);}
+.run-btn:disabled{opacity:0.4;cursor:not-allowed;}
+
+/* ── Pulse animation ── */
+@keyframes nodePulse{0%,100%{opacity:1;}50%{opacity:0.55;}}
+@keyframes flowDash{to{stroke-dashoffset:-24;}}
+.flowing{stroke-dasharray:6 6;animation:flowDash 0.6s linear infinite;}
+.pulsing rect{animation:nodePulse 0.7s ease-in-out infinite;}
+
+/* responsive */
+@media(max-width:600px){
+  .detail-grid{grid-template-columns:1fr 1fr;}
+  .metric-strip{gap:12px;}
+  .tab{font-size:10px;padding:8px 4px;}
+}
+</style>
+</head>
+<body>
+
+<div style="max-width:960px;margin:0 auto;padding:40px 20px;">
+
+  <div style="text-align:center;margin-bottom:2rem;">
+    <div style="font-size:10px;font-family:var(--mono);color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:10px;">Automation Architecture — Live System Maps</div>
+    <h2 style="font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;line-height:1.15;margin-bottom:10px;">How your data flows.</h2>
+    <p style="color:var(--text2);font-size:1rem;max-width:520px;margin:0 auto;line-height:1.7;">Each node is a real system step. Click any node to see what it does, what tool runs it, and what happens if it fails.</p>
+  </div>
+
+  <div class="tab-bar" role="tablist">
+    <button class="tab active" onclick="switchFlow('saas')" role="tab">SaaS Lead Engine</button>
+    <button class="tab" onclick="switchFlow('agency')" role="tab">Agency Content</button>
+    <button class="tab" onclick="switchFlow('ecomm')" role="tab">E-commerce Ops</button>
+  </div>
+
+  <div class="workflow-wrap">
+    <div class="wf-header">
+      <div>
+        <div class="wf-eyebrow" id="wf-eyebrow">SaaS · Lead Qualification System</div>
+        <div class="wf-title" id="wf-title">Multi-source intake → AI scoring → 60-second routing</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+        <div class="metric-strip" id="metric-strip">
+          <div class="met"><div class="met-n">2 min</div><div class="met-l">Response time</div></div>
+          <div class="met"><div class="met-n">95%</div><div class="met-l">Accuracy</div></div>
+          <div class="met"><div class="met-n">15+ hrs</div><div class="met-l">Saved/week</div></div>
+        </div>
+        <button class="run-btn" id="run-btn" onclick="runAnimation()">Run simulation</button>
+      </div>
+    </div>
+
+    <div class="wf-canvas">
+      <svg id="wf-svg" width="100%" viewBox="0 0 880 320" role="img" style="min-width:640px;">
+        <title>Workflow architecture diagram</title>
+        <desc>Interactive node diagram showing automation flow from lead capture to CRM routing</desc>
+        <defs>
+          <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+            <path d="M2 1L8 5L2 9" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke="context-stroke"/>
+          </marker>
+        </defs>
+        <!-- Content injected by JS -->
+      </svg>
+    </div>
+
+    <div class="wf-detail" id="wf-detail">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+        <div>
+          <div style="font-size:10px;font-family:var(--mono);color:var(--gold);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px;" id="detail-step">Step 01</div>
+          <div style="font-size:16px;font-weight:700;margin-bottom:4px;" id="detail-name">Node name</div>
+          <div style="font-size:13px;color:var(--text2);max-width:480px;line-height:1.6;" id="detail-desc">Description</div>
+        </div>
+        <button onclick="closeDetail()" style="background:transparent;border:1px solid var(--border);color:var(--text2);padding:6px 14px;border-radius:6px;cursor:pointer;font-size:12px;font-family:var(--display);white-space:nowrap;">Close</button>
+      </div>
+      <div class="detail-grid" id="detail-grid"></div>
+    </div>
+
+    <div class="legend" id="legend">
+      <div class="leg-item"><div class="leg-dot" style="background:#1D3A6E;border:1px solid #378ADD;"></div>Intake / trigger</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#1A2A1A;border:1px solid #639922;"></div>AI processing</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#2A1A0A;border:1px solid #BA7517;"></div>Decision / routing</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#1E0E0E;border:1px solid #A32D2D;"></div>Output / notification</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#1A1020;border:1px solid #534AB7;"></div>Storage / CRM</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const FLOWS = {
+  saas: {
+    eyebrow: 'SaaS · Lead Qualification System',
+    title: 'Multi-source intake → AI scoring → 60-second routing',
+    metrics: [
+      {n:'2 min',l:'Response time'},
+      {n:'95%',l:'Accuracy'},
+      {n:'15+ hrs',l:'Saved/week'},
+    ],
+    nodes: [
+      {id:'n1',x:30,y:130,label:'Webhook intake',sub:'Form / email / API',color:'blue',step:'01',
+       desc:'Catches every incoming lead signal — website forms, cold email replies, API calls, Zapier triggers — and normalises them into a single JSON payload before anything else runs.',
+       details:[
+         {l:'Tool',v:'Make.com webhook',s:'Any HTTPS POST source'},
+         {l:'Trigger',v:'Instant',s:'<200ms receive time'},
+         {l:'Fail mode',v:'Retry x3 + Slack alert',s:'Zero silent drops'},
+       ]},
+      {id:'n2',x:220,y:40,label:'Email parser',sub:'Typeform / Gmail',color:'blue',step:'02A',
+       desc:'Parses unstructured email bodies and Typeform submissions into structured fields. Handles messy formats, emoji in subject lines, and non-Latin characters.',
+       details:[
+         {l:'Tool',v:'GPT-4 extract',s:'JSON schema enforced'},
+         {l:'Input',v:'Raw email body',s:'Plain text or HTML'},
+         {l:'Output',v:'Structured object',s:'name, company, intent, budget'},
+       ]},
+      {id:'n3',x:220,y:210,label:'FB/WA intake',sub:'Facebook + WhatsApp',color:'blue',step:'02B',
+       desc:'Pulls lead messages from Facebook Lead Ads and WhatsApp Business API. Deduplicates against existing CRM records before passing downstream.',
+       details:[
+         {l:'Tool',v:'Meta Graph API',s:'+ Make.com adapter'},
+         {l:'Dedup',v:'Phone + email hash',s:'Prevents double-entry'},
+         {l:'Lag',v:'<30 seconds',s:'From form submit to system'},
+       ]},
+      {id:'n4',x:420,y:130,label:'AI qualification',sub:'GPT-4 scoring',color:'green',step:'03',
+       desc:'Reads the full lead context — message text, company URL, source channel, time of day — and scores intent on a 0–100 scale. Generates a one-sentence routing rationale that appears in the Slack alert.',
+       details:[
+         {l:'Model',v:'GPT-4 Turbo',s:'Temperature 0 for consistency'},
+         {l:'Criteria',v:'Your custom rubric',s:'Budget, timeline, fit, urgency'},
+         {l:'Output',v:'Score + rationale',s:'Plain English, not jargon'},
+       ]},
+      {id:'n5',x:610,y:130,label:'Routing decision',sub:'Score threshold',color:'amber',step:'04',
+       desc:'Applies your defined threshold (e.g. score ≥ 70 = hot) and branches the flow. Hot leads go to immediate Slack ping. Warm leads enter the nurture sequence. Cold leads are logged and archived.',
+       details:[
+         {l:'Hot threshold',v:'Score ≥ 70',s:'Configurable per client'},
+         {l:'Response time',v:'< 2 minutes',s:'From lead submit to alert'},
+         {l:'Fail safe',v:'All leads logged',s:'Nothing lost on branch error'},
+       ]},
+      {id:'n6',x:790,y:50,label:'Slack alert',sub:'High-intent leads',color:'red',step:'05A',
+       desc:'Sends a rich Slack message with: lead name, company, score, rationale, and a one-click button to open their CRM record. Sales gets notified within 2 minutes of the lead submitting.',
+       details:[
+         {l:'Tool',v:'Slack API',s:'Block Kit formatted'},
+         {l:'Content',v:'Name, score, link',s:'+ AI rationale sentence'},
+         {l:'SLA',v:'< 2 min guaranteed',s:'Monitored daily'},
+       ]},
+      {id:'n7',x:790,y:210,label:'CRM + nurture',sub:'Warm lead sequence',color:'purple',step:'05B',
+       desc:'Logs the lead to HubSpot or Pipedrive with all enriched fields, then enrolls them in the appropriate nurture sequence. Tags are applied automatically based on source and intent score.',
+       details:[
+         {l:'CRM',v:'HubSpot / Pipedrive',s:'Or Google Sheets fallback'},
+         {l:'Sequence',v:'7-touch email series',s:'Personalised by intent'},
+         {l:'Tags',v:'Auto-applied',s:'Source, score tier, niche'},
+       ]},
+    ],
+    edges:[
+      {from:'n1',to:'n2',fx:178,fy:152,tx:220,ty:68},
+      {from:'n1',to:'n3',fx:178,fy:158,tx:220,ty:238},
+      {from:'n2',to:'n4',fx:368,fy:68,tx:420,ty:145},
+      {from:'n3',to:'n4',fx:368,fy:238,tx:420,ty:165},
+      {from:'n4',to:'n5',fx:568,fy:158,tx:610,ty:158},
+      {from:'n5',to:'n6',fx:758,fy:142,tx:790,ty:78},
+      {from:'n5',to:'n7',fx:758,fy:168,tx:790,ty:238},
+    ],
+  },
+  agency: {
+    eyebrow: 'Agency · Content Repurposing Engine',
+    title: 'Webinar upload → AI extraction → 20+ platform posts',
+    metrics: [
+      {n:'8+ hrs',l:'Saved per piece'},
+      {n:'3×',l:'Content output'},
+      {n:'5',l:'Platforms covered'},
+    ],
+    nodes: [
+      {id:'n1',x:30,y:130,label:'Content trigger',sub:'Upload / URL',color:'blue',step:'01',
+       desc:'Accepts a video file upload, YouTube URL, or Loom link. Validates format and duration before starting the pipeline. Supports MP4, MOV, and direct stream URLs.',
+       details:[
+         {l:'Tool',v:'Make.com + storage',s:'S3 or Google Drive'},
+         {l:'Formats',v:'MP4, MOV, URL',s:'Up to 3 hour runtime'},
+         {l:'Start',v:'Instant on trigger',s:'Email confirmation sent'},
+       ]},
+      {id:'n2',x:210,y:130,label:'Transcription',sub:'AssemblyAI',color:'green',step:'02',
+       desc:'Sends the audio stream to AssemblyAI for speaker-diarised transcription. Returns a full transcript with timestamps and speaker labels within 5–8 minutes for a 60-minute recording.',
+       details:[
+         {l:'Tool',v:'AssemblyAI',s:'Speaker diarization on'},
+         {l:'Speed',v:'~6 min per hour',s:'Of source audio'},
+         {l:'Output',v:'Timestamped JSON',s:'+ plain text transcript'},
+       ]},
+      {id:'n3',x:390,y:130,label:'AI extraction',sub:'GPT-4 analysis',color:'green',step:'03',
+       desc:'Reads the full transcript and extracts: key insights, quotable moments, statistics mentioned, action items, chapter topics, and guest expert soundbites. Structured output for each content format.',
+       details:[
+         {l:'Model',v:'GPT-4 128k context',s:'Fits 4-hour transcripts'},
+         {l:'Extracts',v:'Quotes, stats, actions',s:'+ chapter topics'},
+         {l:'Format',v:'JSON schema',s:'One object per content type'},
+       ]},
+      {id:'n4',x:570,y:60,label:'LinkedIn posts',sub:'3–5 posts',color:'amber',step:'04A',
+       desc:'Generates 3–5 LinkedIn posts per piece — each a different angle: contrarian take, stat hook, storytelling arc, and listicle. All under 280 words, native formatting, no hashtag spam.',
+       details:[
+         {l:'Output',v:'3–5 posts',s:'Per source piece'},
+         {l:'Style',v:'Founder voice',s:'Trained on your examples'},
+         {l:'Tool',v:'Buffer auto-schedule',s:'Or manual approval queue'},
+       ]},
+      {id:'n5',x:570,y:200,label:'Twitter / X',sub:'Thread + shorts',color:'amber',step:'04B',
+       desc:'Creates a 6–10 tweet thread from the top insights, plus 3–4 standalone short tweets for high-engagement windows. Threads are formatted with proper numbering and hooks.',
+       details:[
+         {l:'Output',v:'1 thread + 4 shorts',s:'Per source piece'},
+         {l:'Format',v:'Native X threading',s:'No link-in-bio patterns'},
+         {l:'Schedule',v:'Auto-queued',s:'Peak engagement times'},
+       ]},
+      {id:'n6',x:760,y:130,label:'Delivery + log',sub:'Buffer + Sheets',color:'purple',step:'05',
+       desc:'Schedules all posts through Buffer for optimal timing, logs the full content batch to a Google Sheet for client review, and sends a summary Slack message with the post count and preview links.',
+       details:[
+         {l:'Tool',v:'Buffer API',s:'+ Google Sheets'},
+         {l:'Review',v:'Client approval queue',s:'Optional hold before post'},
+         {l:'Log',v:'Content audit trail',s:'Date, platform, performance'},
+       ]},
+    ],
+    edges:[
+      {from:'n1',to:'n2',fx:178,fy:158,tx:210,ty:158},
+      {from:'n2',to:'n3',fx:358,fy:158,tx:390,ty:158},
+      {from:'n3',to:'n4',fx:538,fy:145,tx:570,ty:88},
+      {from:'n3',to:'n5',fx:538,fy:165,tx:570,ty:228},
+      {from:'n4',to:'n6',fx:718,fy:88,tx:760,ty:148},
+      {from:'n5',to:'n6',fx:718,fy:228,tx:760,ty:168},
+    ],
+  },
+  ecomm: {
+    eyebrow: 'E-commerce · Unified Operations Hub',
+    title: 'Order events → AI triage → automated resolution',
+    metrics: [
+      {n:'20+ hrs',l:'Saved/week'},
+      {n:'0',l:'Missed requests'},
+      {n:'40%',l:'Faster resolution'},
+    ],
+    nodes: [
+      {id:'n1',x:30,y:130,label:'Shopify events',sub:'Orders + tickets',color:'blue',step:'01',
+       desc:'Listens to Shopify webhooks for new orders, cancellations, refund requests, and abandoned carts. Also monitors the Gmail support inbox for customer messages. All events normalised into one pipeline.',
+       details:[
+         {l:'Tool',v:'Shopify Webhooks',s:'+ Gmail API monitor'},
+         {l:'Events',v:'8 order event types',s:'+ support email intake'},
+         {l:'Speed',v:'Real-time',s:'<30s from event to system'},
+       ]},
+      {id:'n2',x:210,y:130,label:'AI triage',sub:'Claude intent read',color:'green',step:'02',
+       desc:'Classifies every incoming event by type and urgency. For support emails, reads the customer message and assigns: refund request, shipping query, product complaint, or compliment — with a draft reply.',
+       details:[
+         {l:'Model',v:'Claude 3 Sonnet',s:'Instruction-tuned for support'},
+         {l:'Categories',v:'8 support types',s:'With draft replies'},
+         {l:'Accuracy',v:'>92% classification',s:'Tested on 200 real tickets'},
+       ]},
+      {id:'n3',x:390,y:60,label:'Auto-resolve',sub:'Low-complexity cases',color:'amber',step:'03A',
+       desc:'For standard queries (order status, tracking number, return policy), sends an automated reply with the exact information pulled live from Shopify. No human needed. Customer gets an answer in under 60 seconds.',
+       details:[
+         {l:'Cases',v:'Order status, tracking',s:'Return policy, ETA'},
+         {l:'Data source',v:'Live Shopify API',s:'Real-time order data'},
+         {l:'Response time',v:'< 60 seconds',s:'From email to reply'},
+       ]},
+      {id:'n4',x:390,y:200,label:'Human queue',sub:'Complex cases',color:'red',step:'03B',
+       desc:'Escalates refund disputes, product complaints, and unusual requests to a Slack channel with: the customer message, order history, and a Claude-drafted suggested reply. Human reviews and sends in one click.',
+       details:[
+         {l:'Tool',v:'Slack + Gmail',s:'Draft pre-loaded'},
+         {l:'Context',v:'Order history included',s:'Last 3 orders shown'},
+         {l:'SLA',v:'< 4hr human response',s:'vs 24hr industry avg'},
+       ]},
+      {id:'n5',x:570,y:130,label:'Inventory alerts',sub:'Low stock monitor',color:'amber',step:'04',
+       desc:'Checks inventory levels after each order and compares against reorder thresholds. Fires a Slack alert when any SKU drops below the threshold, including a suggested reorder quantity.',
+       details:[
+         {l:'Check',v:'After every order',s:'Real-time Shopify pull'},
+         {l:'Alert',v:'Slack + email',s:'To owner + supplier'},
+         {l:'Threshold',v:'Configurable per SKU',s:'You set the limits'},
+       ]},
+      {id:'n6',x:760,y:130,label:'Daily report',sub:'Owner digest',color:'purple',step:'05',
+       desc:'Every morning at 8am: a Slack summary with yesterday\'s order volume, support ticket count, auto-resolve rate, escalations, and any inventory alerts. One message. Everything you need to run the day.',
+       details:[
+         {l:'Schedule',v:'8am daily',s:'Your timezone'},
+         {l:'Content',v:'Orders, tickets, stock',s:'+ auto-resolve rate'},
+         {l:'Format',v:'Slack rich message',s:'One tap to drill in'},
+       ]},
+    ],
+    edges:[
+      {from:'n1',to:'n2',fx:178,fy:158,tx:210,ty:158},
+      {from:'n2',to:'n3',fx:358,fy:142,tx:390,ty:88},
+      {from:'n2',to:'n4',fx:358,fy:172,tx:390,ty:228},
+      {from:'n3',to:'n5',fx:538,fy:88,tx:570,ty:148},
+      {from:'n4',to:'n5',fx:538,fy:228,tx:570,ty:168},
+      {from:'n5',to:'n6',fx:718,fy:158,tx:760,ty:158},
+    ],
+  },
+};
+
+const NODE_W = 148, NODE_H = 56;
+const COLORS = {
+  blue:   {fill:'#0D1E38',stroke:'#378ADD',text:'#85B7EB'},
+  green:  {fill:'#0D1A0D',stroke:'#639922',text:'#97C459'},
+  amber:  {fill:'#1F1200',stroke:'#BA7517',text:'#EF9F27'},
+  red:    {fill:'#180808',stroke:'#A32D2D',text:'#F09595'},
+  purple: {fill:'#110D1E',stroke:'#534AB7',text:'#AFA9EC'},
+};
+
+let currentFlow = 'saas';
+let animating = false;
+let selectedNode = null;
+
+function switchFlow(key) {
+  currentFlow = key;
+  selectedNode = null;
+  document.querySelectorAll('.tab').forEach((t,i) => {
+    t.classList.toggle('active', ['saas','agency','ecomm'][i] === key);
+  });
+  renderFlow(FLOWS[key]);
+  closeDetail();
+}
+
+function renderFlow(flow) {
+  const svg = document.getElementById('wf-svg');
+  document.getElementById('wf-eyebrow').textContent = flow.eyebrow;
+  document.getElementById('wf-title').textContent = flow.title;
+  document.getElementById('metric-strip').innerHTML = flow.metrics
+    .map(m => `<div class="met"><div class="met-n">${m.n}</div><div class="met-l">${m.l}</div></div>`).join('');
+
+  let html = `<defs><marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke="context-stroke"/></marker></defs>`;
+
+  flow.edges.forEach(e => {
+    const dx = e.tx - e.fx, dy = e.ty - e.fy;
+    const mx = e.fx + dx * 0.5;
+    html += `<path id="edge-${e.from}-${e.to}" d="M${e.fx},${e.fy} C${mx},${e.fy} ${mx},${e.ty} ${e.tx},${e.ty}" fill="none" stroke="rgba(255,215,0,0.2)" stroke-width="1.5" marker-end="url(#arr)"/>`;
+  });
+
+  flow.nodes.forEach(n => {
+    const c = COLORS[n.color];
+    const cx = n.x + NODE_W/2, cy = n.y + NODE_H/2;
+    html += `<g class="wf-node" id="node-${n.id}" style="cursor:pointer" onclick="selectNode('${n.id}')">
+      <rect x="${n.x}" y="${n.y}" width="${NODE_W}" height="${NODE_H}" rx="8" fill="${c.fill}" stroke="${c.stroke}" stroke-width="1"/>
+      <text x="${cx}" y="${cy - 7}" text-anchor="middle" dominant-baseline="central" fill="${c.text}" font-family="'Syne',sans-serif" font-size="12" font-weight="700">${n.label}</text>
+      <text x="${cx}" y="${cy + 10}" text-anchor="middle" dominant-baseline="central" fill="${c.stroke}" font-family="'DM Mono',monospace" font-size="10" opacity="0.75">${n.sub}</text>
+      <rect x="${n.x}" y="${n.y}" width="${NODE_W}" height="${NODE_H}" rx="8" fill="transparent" stroke="transparent" stroke-width="0"/>
+    </g>`;
+  });
+
+  svg.innerHTML = html;
+  document.getElementById('run-btn').disabled = false;
+}
+
+function selectNode(nid) {
+  const flow = FLOWS[currentFlow];
+  const node = flow.nodes.find(n => n.id === nid);
+  if (!node) return;
+
+  document.querySelectorAll('.wf-node rect:first-child').forEach(r => {
+    r.style.filter = 'none';
+  });
+  const el = document.getElementById(`node-${nid}`);
+  if (el) el.querySelector('rect').style.filter = 'drop-shadow(0 0 8px rgba(255,215,0,0.5))';
+
+  document.getElementById('detail-step').textContent = `Step ${node.step}`;
+  document.getElementById('detail-name').textContent = node.label + ' — ' + node.sub;
+  document.getElementById('detail-desc').textContent = node.desc;
+  document.getElementById('detail-grid').innerHTML = node.details.map(d =>
+    `<div class="detail-card">
+      <div class="dc-label">${d.l}</div>
+      <div class="dc-value gold">${d.v}</div>
+      <div class="dc-sub">${d.s}</div>
+    </div>`
+  ).join('');
+
+  document.getElementById('wf-detail').classList.add('show');
+  selectedNode = nid;
+}
+
+function closeDetail() {
+  document.getElementById('wf-detail').classList.remove('show');
+  document.querySelectorAll('.wf-node rect:first-child').forEach(r => {
+    r.style.filter = 'none';
+  });
+  selectedNode = null;
+}
+
+async function runAnimation() {
+  if (animating) return;
+  animating = true;
+  const btn = document.getElementById('run-btn');
+  btn.disabled = true;
+  btn.textContent = 'Running...';
+
+  const flow = FLOWS[currentFlow];
+  closeDetail();
+
+  const allEdges = document.querySelectorAll('[id^="edge-"]');
+  allEdges.forEach(e => { e.setAttribute('stroke','rgba(255,215,0,0.2)'); e.classList.remove('flowing'); });
+  document.querySelectorAll('.wf-node rect:first-child').forEach(r => {
+    r.style.filter = 'none'; r.style.opacity = '0.3';
+  });
+
+  await sleep(200);
+
+  for (let i = 0; i < flow.nodes.length; i++) {
+    const node = flow.nodes[i];
+    const el = document.getElementById(`node-${node.id}`);
+    if (el) {
+      el.querySelector('rect').style.opacity = '1';
+      el.querySelector('rect').style.filter = 'drop-shadow(0 0 10px rgba(255,215,0,0.6))';
+    }
+
+    const outEdges = flow.edges.filter(e => e.from === node.id);
+    outEdges.forEach(e => {
+      const edgeEl = document.getElementById(`edge-${e.from}-${e.to}`);
+      if (edgeEl) {
+        edgeEl.setAttribute('stroke','rgba(255,215,0,0.7)');
+        edgeEl.classList.add('flowing');
+      }
+    });
+
+    await sleep(i < flow.nodes.length - 1 ? 450 : 200);
+
+    if (el) el.querySelector('rect').style.filter = 'none';
+  }
+
+  await sleep(400);
+  allEdges.forEach(e => { e.setAttribute('stroke','rgba(255,215,0,0.2)'); e.classList.remove('flowing'); });
+  document.querySelectorAll('.wf-node rect:first-child').forEach(r => {
+    r.style.filter = 'none'; r.style.opacity = '1';
+  });
+
+  btn.textContent = 'Run simulation';
+  btn.disabled = false;
+  animating = false;
+}
+
+function sleep(ms){ return new Promise(r => setTimeout(r, ms)); }
+
+renderFlow(FLOWS.saas);
+</script>
+</body>
+</html>
