@@ -59,6 +59,14 @@
             height: 100%;
             border: none;
         }
+
+        .video-fallback {
+            display: inline-flex;
+            margin-top: 1rem;
+            color: var(--gold-primary);
+            font-weight: 700;
+            text-decoration: none;
+        }
         
         .demo-content {
             padding: 2rem;
@@ -145,15 +153,9 @@
 <body>
     <!-- Navigation -->
     <nav class="nav" id="mainNav">
-        <div class="container nav-container">
-            <a href="index.html" class="logo">Logic<span class="logo-accent">Prompt</span></a>
-            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
-                <span></span><span></span><span></span>
-            </button>
-<nav class="nav" id="mainNav">
   <div class="container nav-container">
     <a href="index.html" class="logo">Logic<span class="logo-accent">Prompt</span></a>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
     <ul class="nav-menu" id="navMenu">
@@ -189,9 +191,10 @@
                 <div class="demo-video-card">
                     <div class="video-wrapper">
                         <iframe 
-                            src="https://www.youtube.com/embed/nPURnt5qpco?enablejsapi=1" 
+                            src="https://www.youtube-nocookie.com/embed/nPURnt5qpco" 
                             title="SaaS Lead Qualification System"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin"
                             allowfullscreen>
                         </iframe>
                     </div>
@@ -221,6 +224,7 @@
                             <span class="tech-item">Slack API</span>
                             <span class="tech-item">HubSpot</span>
                         </div>
+                        <a class="video-fallback" href="https://youtu.be/nPURnt5qpco" target="_blank" rel="noopener">Open on YouTube</a>
                     </div>
                 </div>
 
@@ -228,38 +232,40 @@
                 <div class="demo-video-card">
                     <div class="video-wrapper">
                         <iframe 
-                            src="https://www.youtube.com/embed/5pfyEx2SWU0?enablejsapi=1" 
+                            src="https://www.youtube-nocookie.com/embed/fj7RFXBar8Q" 
                             title="Agency Content Automation System"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin"
                             allowfullscreen>
                         </iframe>
                     </div>
                     <div class="demo-content">
                         <div class="demo-badge">Agency • Content Automation</div>
-                        <h3>Content Repurposing Engine</h3>
-                        <p>Automated transcription, AI extraction of key insights, and platform-specific content generation. Turns 60-minute webinars into 20+ social posts.</p>
+                        <h3>Agency Workflow Automation</h3>
+                        <p>Lead intake, client reporting, and cross-platform data syncing handled by a multi-node AI workflow. Built to reclaim 30+ hours per week from repetitive agency operations.</p>
                         
                         <div class="demo-stats">
                             <div class="demo-stat">
-                                <div class="demo-stat-value">8+</div>
-                                <div class="demo-stat-label">Hours Saved/Piece</div>
+                                <div class="demo-stat-value">30+</div>
+                                <div class="demo-stat-label">Hours Saved/Week</div>
                             </div>
                             <div class="demo-stat">
-                                <div class="demo-stat-value">3×</div>
-                                <div class="demo-stat-label">Content Output</div>
+                                <div class="demo-stat-value">100%</div>
+                                <div class="demo-stat-label">Manual Entry Cut</div>
                             </div>
                             <div class="demo-stat">
-                                <div class="demo-stat-value">5</div>
-                                <div class="demo-stat-label">Platforms Covered</div>
+                                <div class="demo-stat-value">Live</div>
+                                <div class="demo-stat-label">CRM Sync</div>
                             </div>
                         </div>
                         
                         <div class="tech-list">
-                            <span class="tech-item">AssemblyAI</span>
-                            <span class="tech-item">GPT-4</span>
                             <span class="tech-item">n8n</span>
-                            <span class="tech-item">Buffer</span>
+                            <span class="tech-item">GPT-4</span>
+                            <span class="tech-item">CRM API</span>
+                            <span class="tech-item">Reporting</span>
                         </div>
+                        <a class="video-fallback" href="https://youtu.be/fj7RFXBar8Q" target="_blank" rel="noopener">Open on YouTube</a>
                     </div>
                 </div>
 
@@ -267,38 +273,40 @@
                 <div class="demo-video-card">
                     <div class="video-wrapper">
                         <iframe 
-                            src="https://www.youtube.com/embed/fj7RFXBar8Q?enablejsapi=1" 
+                            src="https://www.youtube-nocookie.com/embed/5pfyEx2SWU0" 
                             title="E-commerce Operations System"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin"
                             allowfullscreen>
                         </iframe>
                     </div>
                     <div class="demo-content">
                         <div class="demo-badge">E-commerce • Operations</div>
-                        <h3>Unified Operations Hub</h3>
-                        <p>Order tracking, customer support triage, inventory alerts, and automated follow-ups. Single control center for all operational workflows.</p>
+                        <h3>Order Fulfillment & Revenue Recovery</h3>
+                        <p>Google Sheets or Shopify events route customers into the right action path: purchase confirmation, abandoned-cart recovery, and automated action logging.</p>
                         
                         <div class="demo-stats">
                             <div class="demo-stat">
-                                <div class="demo-stat-value">20+</div>
-                                <div class="demo-stat-label">Hours Saved/Week</div>
+                                <div class="demo-stat-value">70%</div>
+                                <div class="demo-stat-label">Cart Recovery Target</div>
                             </div>
                             <div class="demo-stat">
-                                <div class="demo-stat-value">0</div>
-                                <div class="demo-stat-label">Missed Requests</div>
+                                <div class="demo-stat-value">100%</div>
+                                <div class="demo-stat-label">Tracking Accuracy</div>
                             </div>
                             <div class="demo-stat">
-                                <div class="demo-stat-value">40%</div>
-                                <div class="demo-stat-label">Faster Resolution</div>
+                                <div class="demo-stat-value">Instant</div>
+                                <div class="demo-stat-label">Response Routing</div>
                             </div>
                         </div>
                         
                         <div class="tech-list">
                             <span class="tech-item">Shopify API</span>
-                            <span class="tech-item">Claude AI</span>
-                            <span class="tech-item">Gmail</span>
-                            <span class="tech-item">Slack</span>
+                            <span class="tech-item">Google Sheets</span>
+                            <span class="tech-item">n8n</span>
+                            <span class="tech-item">Email Flows</span>
                         </div>
+                        <a class="video-fallback" href="https://youtu.be/5pfyEx2SWU0" target="_blank" rel="noopener">Open on YouTube</a>
                     </div>
                 </div>
             </div>

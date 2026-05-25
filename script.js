@@ -11,8 +11,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (navToggle && navMenu) {
         navToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            navToggle.classList.toggle('open');
+            const isOpen = navMenu.classList.toggle('active');
+            navToggle.classList.toggle('open', isOpen);
+            navToggle.setAttribute('aria-expanded', String(isOpen));
         });
 
         // Close menu when clicking outside
@@ -20,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!navToggle.contains(e.target) && !navMenu.contains(e.target)) {
                 navMenu.classList.remove('active');
                 navToggle.classList.remove('open');
+                navToggle.setAttribute('aria-expanded', 'false');
             }
         });
 
@@ -28,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
                 navToggle.classList.remove('open');
+                navToggle.setAttribute('aria-expanded', 'false');
             });
         });
     }
@@ -143,6 +146,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelectorAll('.nav-link');
 
     function updateActiveNavLink() {
+        const samePageLinks = Array.from(navLinks).filter(link => {
+            const href = link.getAttribute('href') || '';
+            return href.startsWith('#');
+        });
+
+        if (samePageLinks.length === 0) return;
+
         const scrollPosition = window.scrollY + 100;
 
         sections.forEach(section => {
@@ -151,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const sectionId = section.getAttribute('id');
 
             if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                navLinks.forEach(link => {
+                samePageLinks.forEach(link => {
                     link.classList.remove('active');
                     if (link.getAttribute('href') === `#${sectionId}`) {
                         link.classList.add('active');
