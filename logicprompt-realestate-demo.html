@@ -6,7 +6,68 @@
 .nav{display:flex;background:white;border:1px solid var(--border);border-radius:10px;overflow:hidden;margin:28px 0}.nav button{flex:1;border:0;border-right:1px solid var(--border);background:transparent;padding:12px 6px;font-size:12px;color:#9297a4;cursor:pointer}.nav button:last-child{border-right:0}.nav button.active{background:var(--ink);color:white}.nav button.done{color:var(--green)}
 .chapter{display:none}.chapter.on{display:block;animation:in .25s ease}@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}.card{background:white;border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:14px}.card h2{font-family:var(--serif);color:var(--ink);font-size:28px;margin-bottom:8px}.row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border)}.row:last-child{border-bottom:0}.label{color:var(--muted)}.val{font-family:var(--mono);color:var(--ink)}.btn{border:0;border-radius:8px;padding:10px 18px;cursor:pointer;margin:4px 6px 4px 0;font-family:var(--sans);font-weight:600}.primary{background:var(--ink);color:white}.gold{background:var(--gold);color:white}.ghost{background:white;border:1px solid var(--border);color:var(--ink)}.lake{background:var(--lake);color:white}
 .fb{max-width:410px;margin:0 auto;background:white;border:1px solid #d8dde8;border-radius:10px;overflow:hidden}.fb-img{height:180px;background:linear-gradient(135deg,#1e6b8c,#1a3a52);display:grid;place-items:center;color:white;text-align:center}.fb-body{padding:14px}.fb input{width:100%;padding:9px 12px;margin:5px 0;border:1px solid #d8dde8;border-radius:6px}.phone{max-width:310px;margin:0 auto;background:var(--ink);border-radius:28px;padding:14px}.screen{background:white;border-radius:18px;min-height:330px;overflow:hidden}.psh{background:var(--lake);color:white;padding:12px}.msgs{padding:12px;min-height:230px;display:flex;flex-direction:column;gap:8px}.bubble{max-width:85%;padding:8px 12px;border-radius:12px;font-size:12px}.ai{background:#eee;align-self:flex-start}.user{background:var(--lake);color:white;align-self:flex-end}.sys{background:#f5e8cf;color:#7a5a1a;align-self:center}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.log{background:#1c1e24;color:#c8ccd8;border-radius:10px;padding:14px;min-height:150px;font-family:var(--mono);font-size:12px}.metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.metric{background:white;border:1px solid var(--border);border-radius:10px;padding:18px;text-align:center}.metric strong{display:block;font-family:var(--serif);font-size:30px}.toast{position:fixed;right:20px;bottom:20px;background:var(--ink);color:white;padding:12px 16px;border-radius:10px;opacity:0;transform:translateY(70px);transition:.3s}.toast.show{opacity:1;transform:none}@media(max-width:720px){.grid,.metric-grid{grid-template-columns:1fr}.nav{overflow-x:auto}.nav button{min-width:92px}.stats{flex-direction:column}.stat{border-right:0;border-bottom:1px solid var(--border)}}
-</style></head><body><div class="wrap"><div class="mast"><div class="brand"><span>LogicPrompt</span> AI</div><div class="live">LIVE DEMO</div></div><div class="hero"><div class="eyebrow">Real estate - Queenstown</div><h1>From missed lead to <em>booked appointment</em> in under 60 seconds</h1><p class="sub">Interactive walkthrough of how Gallagher Property Group automates inbound buyer qualification.</p><div class="stats"><div class="stat"><strong>917 min</strong><span>Industry avg response</span></div><div class="stat"><strong>45 sec</strong><span>With LogicPrompt</span></div><div class="stat"><strong>21x</strong><span>More likely to qualify</span></div></div></div><div class="nav"><button class="active" onclick="go(0)">Pain</button><button onclick="go(1)">Lead</button><button onclick="go(2)">AI Call</button><button onclick="go(3)">CRM</button><button onclick="go(4)">Follow-up</button><button onclick="go(5)">Outcome</button></div>
+
+/* LogicPrompt demo topbar */
+.demo-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  min-height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem clamp(1rem, 5vw, 3rem);
+  background: rgba(0,0,0,0.94);
+  border-bottom: 1px solid rgba(255,215,0,0.28);
+  backdrop-filter: blur(16px);
+  font-family: Inter, 'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+.demo-topbar a { text-decoration: none; }
+.demo-topbar__left { display: inline-flex; align-items: center; gap: 0.9rem; min-width: 0; }
+.demo-topbar__back,
+.demo-topbar__brand {
+  display: inline-flex;
+  align-items: center;
+  color: #f7f4ef;
+  font-size: 0.84rem;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+}
+.demo-topbar__back { color: #FFD700; }
+.demo-topbar__back:hover { color: #fff8b8; }
+.demo-topbar__brand span { color: #FFD700; }
+.demo-topbar__divider { width: 1px; height: 18px; background: rgba(255,215,0,0.24); }
+.demo-topbar__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  padding: 0.46rem 1rem;
+  border-radius: 999px;
+  background: #FFD700;
+  color: #050505;
+  font-size: 0.82rem;
+  font-weight: 900;
+  white-space: nowrap;
+  box-shadow: 0 10px 28px rgba(255,215,0,0.22);
+}
+.demo-topbar__cta:hover { background: #fff08a; }
+@media (max-width: 560px) {
+  .demo-topbar { padding-inline: 1rem; }
+  .demo-topbar__brand,
+  .demo-topbar__divider { display: none; }
+  .demo-topbar__back,
+  .demo-topbar__cta { font-size: 0.78rem; }
+}
+</style></head><body><nav class="demo-topbar" aria-label="Demo navigation">
+  <div class="demo-topbar__left">
+    <a href="demos.html" class="demo-topbar__back">&larr; Back to Live Demos</a>
+    <div class="demo-topbar__divider" aria-hidden="true"></div>
+    <a href="index.html" class="demo-topbar__brand">Logic<span>Prompt</span></a>
+  </div>
+  <a href="audit.html" class="demo-topbar__cta">Book Discovery Call</a>
+</nav><div class="wrap"><div class="mast"><div class="brand"><span>LogicPrompt</span> AI</div><div class="live">LIVE DEMO</div></div><div class="hero"><div class="eyebrow">Real estate - Queenstown</div><h1>From missed lead to <em>booked appointment</em> in under 60 seconds</h1><p class="sub">Interactive walkthrough of how Gallagher Property Group automates inbound buyer qualification.</p><div class="stats"><div class="stat"><strong>917 min</strong><span>Industry avg response</span></div><div class="stat"><strong>45 sec</strong><span>With LogicPrompt</span></div><div class="stat"><strong>21x</strong><span>More likely to qualify</span></div></div></div><div class="nav"><button class="active" onclick="go(0)">Pain</button><button onclick="go(1)">Lead</button><button onclick="go(2)">AI Call</button><button onclick="go(3)">CRM</button><button onclick="go(4)">Follow-up</button><button onclick="go(5)">Outcome</button></div>
 <section class="chapter on"><div class="card"><h2>Gallagher Property Group</h2><p class="sub" style="margin:0 0 14px">Queenstown leads arrive after hours, but buyers work with the first agent who responds. One missed qualified buyer can be worth roughly $48,250 in commission.</p><div class="row"><span class="label">Average Queenstown property</span><span class="val">$1.93M NZD</span></div><div class="row"><span class="label">Typical commission</span><span class="val">$48,250 NZD</span></div><div class="row"><span class="label">Manual response time</span><span class="val" style="color:var(--red)">15+ hours</span></div></div><button class="btn primary" onclick="go(1)">See the lead arrive</button></section>
 <section class="chapter"><div class="card"><h2>Facebook lead ad</h2><div class="fb"><div class="fb-img"><div><strong>Lake Wakatipu Views</strong><br>Frankton Heights - 4 Bed</div></div><div class="fb-body"><p>Exclusive Queenstown listing. Serious buyers register for private viewing.</p><button class="btn lake" id="showForm" onclick="showForm()">Register Interest</button><div id="leadForm" hidden><input value="Sarah & James Mitchell"><input value="+64 21 847 331"><input value="$1.8M - $2.2M"><button class="btn lake" onclick="submitLead()">Submit</button></div><div id="leadSuccess" hidden>Lead submitted. AI triggered.</div></div></div></div><div class="card" id="triggerCard" hidden><h2>System trigger</h2><div class="log" id="triggerLog"></div><button class="btn primary" onclick="go(2)">Watch the AI call</button></div></section>
 <section class="chapter"><div class="grid"><div><div class="phone"><div class="screen"><div class="psh">Gallagher Property</div><div class="msgs" id="msgs"><div class="bubble sys">Incoming call connected</div></div></div></div><button class="btn lake" onclick="runCall()" id="callBtn">Run call simulation</button></div><div class="card"><h2>Qualification</h2><div class="log" id="callLog"></div><div id="qual" hidden><div class="row"><span>Budget</span><span class="val">$1.8M-$2.2M</span></div><div class="row"><span>Timeline</span><span class="val">3-6 months</span></div><button class="btn primary" onclick="go(3)">See CRM update</button></div></div></div></section>
